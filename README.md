@@ -22,7 +22,7 @@ tagged tuples in each other.
 For example, `{:units, {:boxes, 1}}` and `{:units, {:kilograms, 2.5}}`
 tagged tuples describe the same deliverable item with different measures.
 
-The tag chains of `:units` - `:boxes` and `:units` - `:kilograms`
+The tag chains of `:units` --- `:boxes` and `:units` --- `:kilograms`
 can be efficiently pattern matched then to handle core values of
 different types appropriately.
 
@@ -30,17 +30,19 @@ different types appropriately.
 
 ## Usage example
 
-    iex> use TaggedTuple
-    ...> :tag --- 12
-    {:tag, 12}
-    ...> tagged_tuple = :a --- :tag --- :chain --- 12
-    {:a, {:tag, {:chain, 12}}}
-    ...> match?(:a --- :tag --- _tail, tagged_tuple)
-    true
-    ...> :a --- t1 --- t2 --- core_value = tagged_tuple
-    ...> t1 == :tag
-    ...> t2 == :chain
-    ...> core_value == 12
+```elixir
+iex> use TaggedTuple
+...> :tag --- 12
+{:tag, 12}
+...> tagged_tuple = :a --- :tag --- :chain --- 12
+{:a, {:tag, {:chain, 12}}}
+...> match?(:a --- :tag --- _tail, tagged_tuple)
+true
+...> :a --- t1 --- t2 --- core_value = tagged_tuple
+...> t1 == :tag
+...> t2 == :chain
+...> core_value == 12
+```
 
 ## Changelog
 
